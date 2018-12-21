@@ -40,16 +40,19 @@ void sendData()
 {
  DS18B20.requestTemperatures();
  int temperatures[10] = {}; 
+ 
  pson data;
  for(int i = 0; i < 10; i++){
     int temp = DS18B20.getTempCByIndex(i);
-    Serial.println(temp);
+    
     if (temp > 0){
       String name = String(getLabel(i));
       data[name.c_str()] = temp;
       Serial.println(String(name) + ": " + String(temp));
     }
+    
  }
+ 
  thing.write_bucket("testId", data);
  Serial.println("Data sent.");
 }
