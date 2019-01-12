@@ -26,13 +26,10 @@ void setup() {
 String getLabel(int index)
 {
   String labels[] = {
-    "backa 1", //0
-    "backa 2", //1
-    "backa 3", //2
-    "backa 4", //3
-    "pecius",  //4
-    "namas",   //5
-    };
+    "X", //0
+    "Y", //1
+    "Z", //2
+  };
   return labels[index];
 }
 
@@ -42,10 +39,10 @@ void sendData()
  int temperatures[10] = {}; 
  
  pson data;
- for(int i = 0; i < 10; i++){
+ for(int i = 0; i < 3; i++){
     int temp = DS18B20.getTempCByIndex(i);
     
-    if (temp > 0){
+    if (temp > -127){
       String name = String(getLabel(i));
       data[name.c_str()] = temp;
       Serial.println(String(name) + ": " + String(temp));
